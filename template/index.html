@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch & Countdown</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+
+  <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md text-center">
+    <h1 class="text-2xl font-bold mb-4">⏱ Stopwatch & Countdown</h1>
+
+    <!-- Display -->
+    <div id="timeDisplay" class="text-5xl font-mono mb-4 bg-indigo-100 p-4 rounded-xl">
+      00:00:00.000
+    </div>
+
+    <!-- Input for countdown -->
+    <input type="number" id="countdownInput" 
+           placeholder="Enter seconds" 
+           class="border rounded p-2 w-full mb-4 text-center"/>
+
+    <!-- Controls -->
+    <div class="grid grid-cols-2 gap-4">
+      <button id="startBtn" class="bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg">Start</button>
+      <button id="pauseBtn" class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg">Pause</button>
+      <button id="resetBtn" class="bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg">Reset</button>
+      <button id="countdownBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg">Countdown</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
