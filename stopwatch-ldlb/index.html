@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Stopwatch & Countdown Timer</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+				min-height: 100vh;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			}
+			.main-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2rem 1rem;
+			}
+			.box {
+				background: #fafafa;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+			}
+			.title,
+			.subtitle,
+			.label {
+				color: #1a1a1a;
+				font-weight: 600;
+			}
+			.timer-display {
+				font-size: 3.5rem;
+				font-weight: 700;
+				font-family: 'Roboto Mono', monospace;
+				color: #1a1a1a;
+				text-align: center;
+				padding: 2rem;
+				background: #ffffff;
+				border-radius: 8px;
+				margin-bottom: 1.5rem;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+			}
+			.button {
+				transition: all 0.2s ease;
+			}
+			.button:hover:not(:disabled) {
+				transform: translateY(-1px);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+			}
+			.button:active:not(:disabled) {
+				transform: translateY(0);
+			}
+			.input {
+				transition: all 0.2s ease;
+				font-family: 'Roboto Mono', monospace;
+			}
+			.input:focus {
+				transform: scale(1.02);
+			}
+			#lapsContainer {
+				max-height: 350px;
+				overflow-y: auto;
+			}
+			#lapsContainer::-webkit-scrollbar {
+				width: 8px;
+			}
+			#lapsContainer::-webkit-scrollbar-track {
+				background: #f0f0f0;
+				border-radius: 4px;
+			}
+			#lapsContainer::-webkit-scrollbar-thumb {
+				background: #c0c0c0;
+				border-radius: 4px;
+				transition: background 0.2s ease;
+			}
+			#lapsContainer::-webkit-scrollbar-thumb:hover {
+				background: #a0a0a0;
+			}
+			.lap-item {
+				padding: 1rem 1.25rem;
+				background: #f5f5f5;
+				border-radius: 4px;
+				margin-bottom: 0.5rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-family: 'Roboto Mono', monospace;
+				color: #1a1a1a;
+				transition: all 0.2s ease;
+			}
+			.lap-item:nth-child(even) {
+				background: #e8e8e8;
+			}
+			.lap-item:hover {
+				transform: translateX(4px);
+				background: #d8d8d8;
+				box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+			}
+			.lap-item strong {
+				color: #1a1a1a;
+				font-weight: 700;
+			}
+			.countdown-inputs {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				margin-bottom: 1.5rem;
+				flex-wrap: wrap;
+			}
+			.input-group {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			.input-group input {
+				width: 80px;
+				text-align: center;
+				font-size: 1.2rem;
+			}
+			.input-group button {
+				width: 36px;
+				height: 36px;
+				padding: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.alert-message {
+				display: none;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 1000;
+				min-width: 300px;
+				animation: pulse 0.5s ease-in-out infinite alternate;
+			}
+			.alert-message.active {
+				display: block;
+			}
+			button:focus,
+			input:focus {
+				outline: 3px solid #3273dc;
+				outline-offset: 2px;
+			}
+			@keyframes pulse {
+				from {
+					transform: translate(-50%, -50%) scale(1);
+				}
+				to {
+					transform: translate(-50%, -50%) scale(1.05);
+				}
+			}
+			@media (max-width: 768px) {
+				.timer-display {
+					font-size: 2.5rem;
+					padding: 1.5rem;
+				}
+				.input-group input {
+					width: 70px;
+					font-size: 1rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main-container">
+			<h1 class="title has-text-centered has-text-white mb-6">⏱️ Stopwatch & Timer</h1>
+
+			<div class="columns is-multiline">
+				<div class="column is-12">
+					<div class="box">
+						<h2 class="title is-4 has-text-centered">Stopwatch</h2>
+						<div class="timer-display" id="stopwatchDisplay">00:00:00:00</div>
+
+						<div class="buttons is-centered mb-4">
+							<button class="button is-success" id="stopwatchStart">Start</button>
+							<button class="button is-warning" id="stopwatchPause" disabled>
+								Pause
+							</button>
+							<button class="button is-danger" id="stopwatchReset">Reset</button>
+							<button class="button is-info" id="stopwatchLap" disabled>Lap</button>
+						</div>
+
+						<div id="lapsContainer"></div>
+					</div>
+				</div>
+
+				<div class="column is-12">
+					<div class="box">
+						<h2 class="title is-4 has-text-centered">Countdown Timer</h2>
+						<div class="timer-display" id="countdownDisplay">00:00:00:00</div>
+
+						<div class="countdown-inputs">
+							<div class="field">
+								<label class="label" for="countdownMinutes">Minutes</label>
+								<div class="input-group">
+									<button class="button is-small" id="minutesDown" type="button">
+										−
+									</button>
+									<input
+										class="input"
+										type="text"
+										id="countdownMinutes"
+										value="1"
+										maxlength="2"
+									/>
+									<button class="button is-small" id="minutesUp" type="button">
+										+
+									</button>
+								</div>
+							</div>
+							<div class="field">
+								<label class="label" for="countdownSeconds">Seconds</label>
+								<div class="input-group">
+									<button class="button is-small" id="secondsDown" type="button">
+										−
+									</button>
+									<input
+										class="input"
+										type="text"
+										id="countdownSeconds"
+										value="0"
+										maxlength="2"
+									/>
+									<button class="button is-small" id="secondsUp" type="button">
+										+
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="buttons is-centered">
+							<button class="button is-success" id="countdownStart">Start</button>
+							<button class="button is-warning" id="countdownPause" disabled>
+								Pause
+							</button>
+							<button class="button is-danger" id="countdownReset">Reset</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="alert-message" id="alertMessage">
+			<div class="notification is-danger is-light">
+				<button class="delete" id="closeAlert"></button>
+				<strong>⏰ Time's Up!</strong>
+				<p>Your countdown has finished!</p>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
