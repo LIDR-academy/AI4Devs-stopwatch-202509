@@ -37,7 +37,7 @@ startBtn.addEventListener("click", () => {
     elapsedTime = Date.now() - startTime;
     isRunning = false;
     startBtn.textContent = "Continue";
-    startBtn.className = "continue";
+    startBtn.className = "continue"; // 🔵 ahora se queda azul
   } else if (!isRunning && startBtn.textContent === "Continue") {
     startTime = Date.now() - elapsedTime;
     timerInterval = setInterval(updateDisplay, 10);
@@ -54,7 +54,5 @@ clearBtn.addEventListener("click", () => {
   timeDisplay.textContent = "00:00:00";
   msDisplay.textContent = "000";
   startBtn.textContent = "Start";
-  startBtn.id = "startBtn";
-  startBtn.className = "";
-  startBtn.style.background = "limegreen";
+  startBtn.className = ""; // se limpia la clase
 });
