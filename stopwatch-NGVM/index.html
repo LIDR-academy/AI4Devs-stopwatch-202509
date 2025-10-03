@@ -3,167 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stopwatch & Countdown</title>
+  <title>Stopwatch</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f0f0f0;
-      overflow: hidden;
-    }
-    .container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      transition: transform 0.6s ease-in-out;
-    }
-    .screen {
-      min-width: 100%;
-      height: 100%;
+      text-align: center;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      background: white;
     }
-    .menu {
-      background: #fff;
-    }
-    .menu h1 {
-      font-size: 1.5rem;
+
+    #display {
+      font-size: 10vw;
+      background: #e8ebff;
+      border: 5px solid #333;
+      border-radius: 20px;
+      padding: 10px 20px;
+      display: inline-block;
       margin-bottom: 20px;
+      box-sizing: border-box;
+      min-width: 80%;
     }
-    .option {
-      margin: 20px;
-      cursor: pointer;
-      text-align: center;
-    }
-    .option img {
-      width: 100px;
-      height: 100px;
-    }
-    .stopwatch {
-      background: #eaf0ff;
-    }
-    .time-display {
-      font-size: 4rem;
-      background: #e6eaff;
-      padding: 20px 40px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-    }
-    .millis {
-      font-size: 1rem;
+
+    #milliseconds {
+      font-size: 2vw;
+      display: block;
+      text-align: right;
       margin-top: -15px;
     }
-    .buttons button {
-      margin: 10px;
-      padding: 15px 30px;
-      font-size: 1.2rem;
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      font-size: 2vw;
+      padding: 15px 40px;
+      border-radius: 15px;
       border: none;
-      border-radius: 10px;
+      color: white;
       cursor: pointer;
-      color: #fff;
+      min-width: 150px;
     }
-    .start {
-      background: #00cc44;
+
+    #startBtn {
+      background: limegreen;
     }
-    .clear {
-      background: #cc0000;
+
+    #clearBtn {
+      background: red;
     }
-    .back {
-      margin-top: 30px;
-      cursor: pointer;
-      color: #2563EB;
-      text-decoration: underline;
+
+    .pause {
+      background: limegreen;
+    }
+
+    .continue {
+      background: dodgerblue;
+    }
+
+    @media (max-width: 600px) {
+      #display {
+        font-size: 14vw;
+      }
+      #milliseconds {
+        font-size: 4vw;
+      }
+      button {
+        font-size: 5vw;
+        min-width: 120px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container" id="container">
-    <!-- Menu Screen -->
-    <div class="screen menu">
-      <div class="option" onclick="goTo('stopwatch')">
-        <h1>Stopwatch</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Green_Arrow_Up.svg" alt="Stopwatch">
-      </div>
-      <div class="option" onclick="goTo('countdown')">
-        <h1>Countdown</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Red_Arrow_Down.svg" alt="Countdown">
-      </div>
-    </div>
-
-    <!-- Stopwatch Screen -->
-    <div class="screen stopwatch">
-      <div class="time-display">
-        <span id="time">00:00:00</span>
-        <div class="millis" id="millis">000</div>
-      </div>
-      <div class="buttons">
-        <button class="start" onclick="startStopwatch()">Start</button>
-        <button class="clear" onclick="clearStopwatch()">Clear</button>
-      </div>
-      <div class="back" onclick="goBack()">&lt; Back</div>
-    </div>
-
-    <!-- Countdown Placeholder -->
-    <div class="screen countdown">
-      <h1>Countdown (to be implemented)</h1>
-      <div class="back" onclick="goBack()">&lt; Back</div>
-    </div>
+  <div id="display">
+    <span id="time">00:00:00</span>
+    <span id="milliseconds">000</span>
   </div>
 
-  <script>
-    const container = document.getElementById('container');
-    let active = 'menu';
+  <div class="buttons">
+    <button id="startBtn">Start</button>
+    <button id="clearBtn">Clear</button>
+  </div>
 
-    function goTo(screen) {
-      if (screen === 'stopwatch') {
-        container.style.transform = 'translateX(-100%)';
-        active = 'stopwatch';
-      } else if (screen === 'countdown') {
-        container.style.transform = 'translateX(-200%)';
-        active = 'countdown';
-      }
-    }
-
-    function goBack() {
-      container.style.transform = 'translateX(0)';
-      active = 'menu';
-      clearStopwatch();
-    }
-
-    // Stopwatch logic
-    let stopwatchInterval;
-    let startTime;
-
-    function startStopwatch() {
-      if (stopwatchInterval) return;
-      startTime = Date.now();
-      stopwatchInterval = setInterval(updateStopwatch, 10);
-    }
-
-    function updateStopwatch() {
-      const elapsed = Date.now() - startTime;
-      const hours = Math.floor(elapsed / 3600000);
-      const minutes = Math.floor((elapsed % 3600000) / 60000);
-      const seconds = Math.floor((elapsed % 60000) / 1000);
-      const millis = elapsed % 1000;
-
-      document.getElementById('time').textContent = 
-        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-      document.getElementById('millis').textContent = String(millis).padStart(3, '0');
-    }
-
-    function clearStopwatch() {
-      clearInterval(stopwatchInterval);
-      stopwatchInterval = null;
-      document.getElementById('time').textContent = '00:00:00';
-      document.getElementById('millis').textContent = '000';
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

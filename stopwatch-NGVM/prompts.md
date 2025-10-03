@@ -1,4 +1,11 @@
-https://chatgpt.com/share/68e05232-6ef0-800e-aa19-41746160e9c4
+https://chatgpt.com/share/68e05bb4-2064-800e-bcf5-8071fa7765ad
+====
+Eres un experto ingeniero de software con énfasis en desarrollo de aplicaciones web, manteniendo siempre los estándares de HTML, CSS, javascript y atendiendo a las mejores prácticas en web.
+Se requiere el desarrollo de una aplicación web responsive que respete la interfaz que se adjunta y que permita responsividad.
+La aplicación sirve como un cronómetro que inicará su carga de la interfaz con el cronómetro inicializado en ceros. Dentro de la interfaz de cronómetro al dar click en el botón verde "Start" iniciará el cronómetro que reflejará su avance en los números de la interfaz en formato horas:minutos:segundos. Los números pequeños debajo cronometrarán los milisegundos, adicionalmente el botón verde cambiará de "Start" a "Pause" manteniendo el estilo verde inicial.
+Si se da click en "Pause" el cronómetro se dentendrá y el botón "Pause" Cambiará a un color azul con la etiqueta "Continue".
+Si se da click en "Continue" el cronómetro continuará su ejecución y se restaurará el botón al color verde con la etiqueta "Pause".
+Si en cualquier momento se da click en el botón rojo "Clear" se reiniciará el contador, el botón "Pause" o "Continue" se colocará en "Start" y se volverá al estado inicial.
+Respeta las interfaz y mantén en estilo suministrado en la imagen adjunta.
+Los archivos a generar deben ser sólamente el HTML y el js de forma separada;los estilos deberán estar dentro del archivo html.
 ======
-eres un experto ingeniero de software con énfasis en desarrollo de aplicaciones web, manteniendo siempre los estándares de HTML, CSS, javascript y atendiendo a las mejores prácticas en web. Se requiere el desarrollo de una aplicación web responsive que respete la interfaz que se adjunta y que permita responsividad. La aplicación sirve como un cronómetro y cuenta hacia atrás. La pagina inicial muestra las dos flechas hacia arriba para Stopwatch y hacia abajo para Countdown. Al dar click sobre la flecha verde correspondiente a Stopwatch se cargará la interfaz con el cronómetro inicializado en ceros. Dentro de la interfaz de cronómetro el botón Start iniciará el cronómetro que reflejara su avance en los números de la interfaz en formato horas:mminutos:segundos. Los números pequeños debajo cronometrarán los milisegundos. Si se llega a presionar el botón rojo Clear, el crónometro se detendrá y se reiniciará. En la parte inferior del cronómetro aparece la opción de retornar a la ventana principal que contiene las opciones de Stopwatch y Countdown. Respeta las interfaces planteadas, y se desea que las transiciones entre ventanas sea con animaciones suaves con un desplazamiento horizontal entre ellas. Los arcvhivos a generar deben ser sólamente el HTML y el js, así que los estilos deberán estar dentro del archivo html.
-=====
