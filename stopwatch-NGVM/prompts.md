@@ -9,3 +9,6 @@ Si en cualquier momento se da click en el botón rojo "Clear" se reiniciará el 
 Respeta las interfaz y mantén en estilo suministrado en la imagen adjunta.
 Los archivos a generar deben ser sólamente el HTML y el js de forma separada;los estilos deberán estar dentro del archivo html.
 ======
+esta muy bien, pero el dolor del botón cuando esté con el label "Continue" debe ser azul
+======
+tenemos el problema que la precedencia por id #startBtn no permite mostrar el azul de la clase .continue

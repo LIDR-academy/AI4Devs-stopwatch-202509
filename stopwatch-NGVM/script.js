@@ -1,4 +1,4 @@
-let startBtn = document.getElementById("startBtn");
+let mainBtn = document.getElementById("mainBtn");
 let clearBtn = document.getElementById("clearBtn");
 let timeDisplay = document.getElementById("time");
 let msDisplay = document.getElementById("milliseconds");
@@ -25,34 +25,38 @@ function updateDisplay() {
   msDisplay.textContent = milliseconds;
 }
 
-startBtn.addEventListener("click", () => {
-  if (!isRunning && startBtn.textContent === "Start") {
+mainBtn.addEventListener("click", () => {
+  if (!isRunning && mainBtn.textContent === "Start") {
+    // Start
     startTime = Date.now();
     timerInterval = setInterval(updateDisplay, 10);
     isRunning = true;
-    startBtn.textContent = "Pause";
-    startBtn.className = "pause";
-  } else if (isRunning && startBtn.textContent === "Pause") {
+    mainBtn.textContent = "Pause";
+    mainBtn.className = "pause";
+  } else if (isRunning && mainBtn.textContent === "Pause") {
+    // Pause
     clearInterval(timerInterval);
     elapsedTime = Date.now() - startTime;
     isRunning = false;
-    startBtn.textContent = "Continue";
-    startBtn.className = "continue"; // 🔵 ahora se queda azul
-  } else if (!isRunning && startBtn.textContent === "Continue") {
+    mainBtn.textContent = "Continue";
+    mainBtn.className = "continue";
+  } else if (!isRunning && mainBtn.textContent === "Continue") {
+    // Continue
     startTime = Date.now() - elapsedTime;
     timerInterval = setInterval(updateDisplay, 10);
     isRunning = true;
-    startBtn.textContent = "Pause";
-    startBtn.className = "pause";
+    mainBtn.textContent = "Pause";
+    mainBtn.className = "pause";
   }
 });
 
 clearBtn.addEventListener("click", () => {
+  // Reset
   clearInterval(timerInterval);
   isRunning = false;
   elapsedTime = 0;
   timeDisplay.textContent = "00:00:00";
   msDisplay.textContent = "000";
-  startBtn.textContent = "Start";
-  startBtn.className = ""; // se limpia la clase
+  mainBtn.textContent = "Start";
+  mainBtn.className = "start";
 });

@@ -52,15 +52,12 @@
       color: white;
       cursor: pointer;
       min-width: 150px;
+      transition: background 0.3s ease;
     }
 
-    /* Estados del botón Start */
-    #startBtn {
+    /* Estados del botón principal */
+    .start {
       background: limegreen;
-    }
-
-    #clearBtn {
-      background: red;
     }
 
     .pause {
@@ -69,6 +66,11 @@
 
     .continue {
       background: dodgerblue;
+    }
+
+    /* Botón secundario */
+    #clearBtn {
+      background: red;
     }
 
     @media (max-width: 600px) {
@@ -92,7 +94,7 @@
   </div>
 
   <div class="buttons">
-    <button id="startBtn">Start</button>
+    <button id="mainBtn" class="start">Start</button>
     <button id="clearBtn">Clear</button>
   </div>
 
