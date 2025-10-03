@@ -1,0 +1,315 @@
+:root {
+  color-scheme: dark;
+  --bg: #06121f;
+  --bg-panel: rgba(3, 22, 40, 0.85);
+  --bg-panel-alt: rgba(5, 41, 66, 0.55);
+  --primary: #26c6ff;
+  --primary-strong: #12aee6;
+  --accent: #00ffb3;
+  --text: #f8fbff;
+  --muted: #9face6;
+  --danger: #ff6b81;
+  --border-radius: 1.25rem;
+  --shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.4);
+  --font-display: 'Courier New', 'Lucida Console', Monaco, monospace;
+  --transition: 180ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #020912 0%, #031b30 60%, #05142a 100%);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem 3.5rem;
+}
+
+main.app {
+  width: min(64rem, 100%);
+  background: var(--bg-panel);
+  backdrop-filter: blur(14px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(38, 198, 255, 0.2);
+  padding: clamp(1.5rem, 2vw + 1rem, 2.75rem);
+  display: grid;
+  gap: 2.5rem;
+}
+
+.app__header {
+  text-align: center;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.app__header h1 {
+  font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.app__tagline {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.timers {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .timers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.timer {
+  background: var(--bg-panel-alt);
+  border-radius: calc(var(--border-radius) - 0.5rem);
+  padding: 1.75rem;
+  display: grid;
+  gap: 1.25rem;
+  border: 1px solid rgba(38, 198, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.timer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(38, 198, 255, 0.15), transparent 55%);
+  pointer-events: none;
+}
+
+.timer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.timer__header h2 {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.timer__state {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+.timer__display {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 4vw + 1.1rem, 3.85rem);
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 1.35rem 1rem;
+  width: min(100%, 28rem);
+  margin: 0 auto;
+  border-radius: 1.1rem;
+  background: #001628;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.58), 0 0 14px rgba(38, 198, 255, 0.28);
+  color: var(--primary);
+  text-shadow: 0 0 12px rgba(38, 198, 255, 0.8);
+  font-variant-numeric: tabular-nums;
+  transition: transform var(--transition), color var(--transition);
+}
+
+.timer__display.is-spark {
+  color: var(--accent);
+  transform: scale(1.01);
+}
+
+.timer__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.btn {
+  position: relative;
+  padding: 0.75rem 1.75rem;
+  background: var(--primary);
+  color: #00121e;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  box-shadow: 0 0.75rem 1.5rem rgba(38, 198, 255, 0.35);
+}
+
+.btn:hover:not(:disabled),
+.btn:focus-visible:not(:disabled) {
+  background: var(--primary-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 1.1rem 1.8rem rgba(18, 174, 230, 0.45);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  background: rgba(38, 198, 255, 0.2);
+  color: rgba(248, 251, 255, 0.4);
+  box-shadow: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.timer__hint {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.countdown__inputs {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.input-group input {
+  width: 4.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(38, 198, 255, 0.35);
+  background: linear-gradient(160deg, rgba(3, 18, 32, 0.95), rgba(8, 46, 70, 0.9));
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.45), 0 0 0 rgba(38, 198, 255, 0);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+  -moz-appearance: textfield;
+}
+
+.input-group input:hover {
+  border-color: rgba(38, 198, 255, 0.55);
+}
+
+.input-group input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: inset 0 0 12px rgba(38, 198, 255, 0.35), 0 0 0 3px rgba(0, 255, 179, 0.18);
+  background: linear-gradient(160deg, rgba(6, 28, 48, 0.95), rgba(15, 71, 102, 0.92));
+}
+
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.countdown__progress {
+  height: 0.65rem;
+  width: 100%;
+  border-radius: 999px;
+  overflow: hidden;
+  appearance: none;
+  background-color: rgba(38, 198, 255, 0.16);
+}
+
+.countdown__progress::-webkit-progress-bar {
+  background-color: rgba(38, 198, 255, 0.16);
+}
+
+.countdown__progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.countdown__progress::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.timer__message {
+  min-height: 1.25rem;
+  text-align: center;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.timer__message.is-alert {
+  color: var(--danger);
+}
+
+body.reduced-motion .timer__display,
+body.reduced-motion .btn {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition: 0ms;
+  }
+  body {
+    scroll-behavior: auto;
+  }
+  body:not(.reduced-motion) {
+    transition: none;
+  }
+  body:not(.reduced-motion) .timer__display,
+  body:not(.reduced-motion) .btn {
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  main.app {
+    padding: 1.75rem;
+  }
+  .timer {
+    padding: 1.5rem;
+  }
+  .timer__display {
+    font-size: clamp(2.35rem, 10vw, 3.5rem);
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    padding: 1.25rem 0.75rem 2.5rem;
+  }
+  .input-group input {
+    width: 4.5rem;
+  }
+}

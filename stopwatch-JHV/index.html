@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cronómetro y Cuenta Atrás</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' ry='12' fill='%23002133'/%3E%3Cpath d='M32 10a20 20 0 1 1-20 20A20 20 0 0 1 32 10Zm0 36a16 16 0 1 0-16-16 16 16 0 0 0 16 16Zm0-38a2 2 0 0 1-2-2V4a2 2 0 0 1 4 0v4a2 2 0 0 1-2 2Zm16.49 5.51a2 2 0 0 1 0-2.83l2.83-2.83a2 2 0 0 1 2.83 2.83l-2.83 2.83a2 2 0 0 1-2.83 0Z' fill='%2326c6ff'/%3E%3Cpath d='M32 18a2 2 0 0 1 2 2v11.17l8.24 8.24a2 2 0 0 1-2.83 2.83l-9-9A2 2 0 0 1 30 32V20a2 2 0 0 1 2-2Z' fill='%23f8fbff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app" aria-label="Aplicación de cronómetro y cuenta atrás">
+    <header class="app__header">
+      <h1>Cronómetro y cuenta atrás</h1>
+      <p class="app__tagline">Controla el tiempo con precisión; accesible desde cualquier dispositivo.</p>
+    </header>
+
+    <div class="timers">
+      <section class="timer" aria-labelledby="stopwatch-title">
+        <header class="timer__header">
+          <h2 id="stopwatch-title">Cronómetro</h2>
+          <p id="stopwatch-state" class="timer__state" role="status" aria-live="polite">Listo</p>
+        </header>
+        <div class="timer__display" role="timer" aria-live="off" aria-atomic="true" aria-describedby="stopwatch-state" data-stopwatch-display>00:00.00</div>
+        <div class="timer__controls">
+          <button type="button" class="btn" data-stopwatch-start aria-pressed="false">Iniciar</button>
+          <button type="button" class="btn" data-stopwatch-toggle disabled aria-pressed="false">Pausar</button>
+          <button type="button" class="btn" data-stopwatch-reset disabled>Reiniciar</button>
+        </div>
+        <p class="timer__hint">Pulsa la barra espaciadora para iniciar o pausar el cronómetro.</p>
+      </section>
+
+      <section class="timer" aria-labelledby="countdown-title">
+        <header class="timer__header">
+          <h2 id="countdown-title">Cuenta atrás</h2>
+          <p id="countdown-state" class="timer__state" role="status" aria-live="polite">Listo</p>
+        </header>
+        <div class="countdown__inputs" aria-describedby="countdown-state">
+          <label class="input-group">
+            <span>Minutos</span>
+            <input type="number" min="0" max="59" step="1" value="0" inputmode="numeric" data-countdown-minutes aria-label="Minutos para la cuenta atrás">
+          </label>
+          <label class="input-group">
+            <span>Segundos</span>
+            <input type="number" min="0" max="59" step="1" value="30" inputmode="numeric" data-countdown-seconds aria-label="Segundos para la cuenta atrás">
+          </label>
+        </div>
+        <div class="timer__display" role="timer" aria-live="off" aria-atomic="true" data-countdown-display>00:30.00</div>
+        <progress class="countdown__progress" value="0" max="1" aria-hidden="true"></progress>
+        <div class="timer__controls">
+          <button type="button" class="btn" data-countdown-start aria-pressed="false">Iniciar</button>
+          <button type="button" class="btn" data-countdown-toggle disabled aria-pressed="false">Pausar</button>
+          <button type="button" class="btn" data-countdown-reset disabled>Reiniciar</button>
+        </div>
+        <p class="timer__message" aria-live="polite" data-countdown-message></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
