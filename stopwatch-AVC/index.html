@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="stopwatch-app" id="app">
+    <h1 class="visually-hidden">Stopwatch & Countdown</h1>
+
+    <section class="display-wrap" aria-label="Timer display">
+      <div id="display" role="timer" aria-live="off" aria-atomic="false">
+        <span id="time-main" aria-hidden="false">00:00:00</span>
+        <span id="ms" aria-hidden="true">000</span>
+      </div>
+    </section>
+
+    <section class="controls">
+      <button id="startBtn" class="btn btn-start" aria-pressed="false" aria-label="Start stopwatch">Start</button>
+      <button id="clearBtn" class="btn btn-clear" aria-label="Clear stopwatch">Clear</button>
+    </section>
+
+    <section class="countdown" aria-label="Countdown controls">
+      <details id="cd-details">
+        <summary>Countdown controls</summary>
+        <form id="cd-form" onsubmit="return false;">
+          <label>
+            Minutes
+            <input id="cd-min" type="number" min="0" step="1" inputmode="numeric" value="0">
+          </label>
+          <label>
+            Seconds
+            <input id="cd-sec" type="number" min="0" max="59" step="1" inputmode="numeric" value="8">
+          </label>
+          <div class="cd-buttons">
+            <button id="cd-start" class="btn btn-start">Start Countdown</button>
+            <button id="cd-pause" class="btn" type="button">Pause</button>
+            <button id="cd-reset" class="btn" type="button">Reset</button>
+          </div>
+        </form>
+      </details>
+    </section>
+
+    <!-- Hidden live region for announcements -->
+    <div id="sr-announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Audio for beep -->
+    <audio id="beep-snd" preload="auto">
+      <source src="" />
+    </audio>
+
+    <footer class="note">
+      <small>Keyboard: <strong>Space</strong> = Start/Stop, <strong>R</strong> = Reset</small>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
