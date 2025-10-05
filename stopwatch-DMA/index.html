@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online Stopwatch and Countdown Timer">
+    <title>Stopwatch & Countdown Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="container">
+        <!-- Mode Switcher -->
+        <div class="mode-switcher" role="tablist" aria-label="Timer mode selection">
+            <button 
+                id="stopwatchTab" 
+                class="mode-tab active" 
+                role="tab" 
+                aria-selected="true"
+                aria-controls="stopwatch-panel"
+            >
+                Stopwatch
+            </button>
+            <button 
+                id="countdownTab" 
+                class="mode-tab" 
+                role="tab" 
+                aria-selected="false"
+                aria-controls="countdown-panel"
+            >
+                Countdown
+            </button>
+        </div>
+
+        <!-- Timer Display -->
+        <div class="timer-display" role="timer" aria-live="polite" aria-atomic="true">
+            <span id="timeDisplay" class="time">00:00:00</span>
+            <span id="millisecondsDisplay" class="milliseconds">.000</span>
+        </div>
+
+        <!-- Countdown Input (hidden by default) -->
+        <div id="countdownInput" class="countdown-input hidden" role="group" aria-label="Set countdown time">
+            <label for="hours">Hours:</label>
+            <input 
+                type="number" 
+                id="hours" 
+                min="0" 
+                max="23" 
+                value="0" 
+                aria-label="Hours"
+            >
+            <label for="minutes">Minutes:</label>
+            <input 
+                type="number" 
+                id="minutes" 
+                min="0" 
+                max="59" 
+                value="1" 
+                aria-label="Minutes"
+            >
+            <label for="seconds">Seconds:</label>
+            <input 
+                type="number" 
+                id="seconds" 
+                min="0" 
+                max="59" 
+                value="0" 
+                aria-label="Seconds"
+            >
+        </div>
+
+        <!-- Controls -->
+        <div class="controls" role="group" aria-label="Timer controls">
+            <button 
+                id="startStopBtn" 
+                class="btn btn-primary"
+                aria-label="Start timer"
+            >
+                Start
+            </button>
+            <button 
+                id="resetBtn" 
+                class="btn btn-secondary"
+                aria-label="Clear timer"
+            >
+                Clear
+            </button>
+        </div>
+
+        <!-- Error Message Display -->
+        <div id="errorMessage" class="error-message hidden" role="alert" aria-live="assertive"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
