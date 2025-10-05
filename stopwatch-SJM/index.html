@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stopwatch & Countdown</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app" role="main" aria-labelledby="app-title">
+    <div class="card glass">
+      <h1 id="app-title" class="title">Stopwatch</h1>
+
+      <div class="display" id="time-display" aria-live="polite">00:00:00</div>
+
+      <form id="countdown-form" class="countdown-form" aria-hidden="true">
+        <label for="hours">H</label>
+        <input id="hours" type="number" min="0" value="0" inputmode="numeric" aria-label="Hours">
+        <label for="minutes">M</label>
+        <input id="minutes" type="number" min="0" max="59" value="0" inputmode="numeric" aria-label="Minutes">
+        <label for="seconds">S</label>
+        <input id="seconds" type="number" min="0" max="59" value="0" inputmode="numeric" aria-label="Seconds">
+      </form>
+
+      <div class="controls">
+        <button id="start-btn" class="btn primary" aria-label="Start timer">Start</button>
+        <button id="pause-btn" class="btn" aria-label="Pause timer" disabled>Pause</button>
+        <button id="reset-btn" class="btn" aria-label="Reset timer" disabled>Reset</button>
+      </div>
+
+      <div class="mode-row">
+        <button id="switch-mode" class="btn ghost" aria-pressed="false">Switch to Countdown</button>
+      </div>
+
+      <div id="alert" class="alert" role="status" aria-live="assertive" hidden>
+        Time's up!
+      </div>
+    </div>
+
+    <footer class="attribution">Inspired by online-stopwatch — modern UI</footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
