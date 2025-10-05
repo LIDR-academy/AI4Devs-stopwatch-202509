@@ -13,7 +13,16 @@
 
     <main class="app-container">
 
-        <section class="timer" id="stopwatch">
+        <section class="app-choice" id="appChoice">
+            <h1 class="app-choice__title">Choose a Tool</h1>
+            <div class="app-choice__buttons">
+                <button class="app-choice__button" id="selectStopwatchBtn">Stopwatch</button>
+                <button class="app-choice__button" id="selectCountdownBtn">Countdown</button>
+            </div>
+        </section>
+
+        <section class="timer hidden" id="stopwatch">
+            <button class="timer__back-btn" aria-label="Go back to selection">&larr; Back</button>
             <h2 class="timer__title">Stopwatch</h2>
             <div class="timer__display-wrapper">
                 <p class="timer__display" id="stopwatchDisplay">00:00:00.000</p>
@@ -28,7 +37,8 @@
             </div>
         </section>
 
-        <section class="timer" id="countdown">
+        <section class="timer hidden" id="countdown">
+            <button class="timer__back-btn" aria-label="Go back to selection">&larr; Back</button>
             <h2 class="timer__title">Countdown</h2>
             <div class="timer__display-wrapper">
                  <p class="timer__display" id="countdownDisplay">00:00:00</p>

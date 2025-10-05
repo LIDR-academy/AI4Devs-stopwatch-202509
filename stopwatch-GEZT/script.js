@@ -6,6 +6,16 @@
     // 1. DOM ELEMENT SELECTION
     //================================================================
     
+    // Main interface elements
+    const appChoice = document.getElementById('appChoice');
+    const selectStopwatchBtn = document.getElementById('selectStopwatchBtn');
+    const selectCountdownBtn = document.getElementById('selectCountdownBtn');
+    const backButtons = document.querySelectorAll('.timer__back-btn');
+
+    // Timer containers
+    const stopwatchContainer = document.getElementById('stopwatch');
+    const countdownContainer = document.getElementById('countdown');
+
     // Stopwatch elements
     const stopwatchDisplay = document.getElementById('stopwatchDisplay');
     const stopwatchStartStopBtn = document.getElementById('stopwatchStartStopBtn');
@@ -22,8 +32,35 @@
     const countdownResetBtn = document.getElementById('countdownResetBtn');
     const countdownInputs = document.getElementById('countdownInputs');
 
+
     //================================================================
-    // 2. STOPWATCH LOGIC & STATE
+    // 2. UI NAVIGATION LOGIC
+    //================================================================
+
+    function showStopwatch() {
+        appChoice.classList.add('hidden');
+        countdownContainer.classList.add('hidden');
+        stopwatchContainer.classList.remove('hidden');
+    }
+
+    function showCountdown() {
+        appChoice.classList.add('hidden');
+        stopwatchContainer.classList.add('hidden');
+        countdownContainer.classList.remove('hidden');
+    }
+
+    function showChoiceScreen() {
+        // Reset timers before going back to prevent them running in the background
+        resetStopwatch();
+        resetCountdown();
+        stopwatchContainer.classList.add('hidden');
+        countdownContainer.classList.add('hidden');
+        appChoice.classList.remove('hidden');
+    }
+
+
+    //================================================================
+    // 3. STOPWATCH LOGIC & STATE
     //================================================================
 
     let stopwatchState = {
@@ -101,7 +138,7 @@
     }
 
     //================================================================
-    // 3. COUNTDOWN LOGIC & STATE
+    // 4. COUNTDOWN LOGIC & STATE
     //================================================================
 
     let countdownState = {
@@ -190,8 +227,13 @@
     }
     
     //================================================================
-    // 4. EVENT LISTENERS
+    // 5. EVENT LISTENERS
     //================================================================
+
+    // Navigation listeners
+    selectStopwatchBtn.addEventListener('click', showStopwatch);
+    selectCountdownBtn.addEventListener('click', showCountdown);
+    backButtons.forEach(button => button.addEventListener('click', showChoiceScreen));
 
     // Stopwatch listeners
     stopwatchStartStopBtn.addEventListener('click', handleStopwatchStartStop);
