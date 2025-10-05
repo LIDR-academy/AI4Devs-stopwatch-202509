@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Suite de Temporizadores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .panel { box-shadow: 0 4px 0 rgba(0,0,0,0.25) inset; }
+      .btn-fat { border-radius: 1.25rem; box-shadow: 0 6px 0 rgba(0,0,0,0.35); }
+      .btn-fat:active { transform: translateY(2px); box-shadow: 0 4px 0 rgba(0,0,0,0.35); }
+      .digit { font-variant-numeric: tabular-nums; }
+      @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:.2} }
+      .blink { animation: blink .9s step-end infinite; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <main class="mx-auto max-w-5xl p-4 md:p-8">
+      <!-- Header -->
+      <header class="mb-6 flex items-center justify-between">
+        <h1 class="text-2xl md:text-3xl font-semibold">Suite de Temporizadores</h1>
+        <a href="#" id="btnBack"
+           class="hidden items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg">
+          <span class="text-xl">⬅</span> Volver
+        </a>
+      </header>
+
+      <!-- MENÚ -->
+      <section id="viewMenu" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <button id="goStopwatch"
+                class="btn-fat p-8 bg-white panel border-4 border-green-400 hover:bg-green-50 transition">
+          <div class="text-center">
+            <h2 class="text-3xl font-medium mb-6">Cronómetro</h2>
+            <div class="mx-auto w-32 h-32 rounded-2xl bg-green-400/80 border-4 border-green-600"></div>
+          </div>
+        </button>
+
+        <button id="goCountdown"
+                class="btn-fat p-8 bg-white panel border-4 border-red-400 hover:bg-red-50 transition">
+          <div class="text-center">
+            <h2 class="text-3xl font-medium mb-6">Cuenta regresiva</h2>
+            <div class="mx-auto w-32 h-32 rounded-2xl bg-red-400/80 border-4 border-red-600"></div>
+          </div>
+        </button>
+      </section>
+
+      <!-- CRONÓMETRO -->
+      <section id="viewStopwatch" class="hidden">
+        <div class="rounded-3xl border-4 border-slate-700 bg-indigo-50 panel p-4 md:p-6 mb-6">
+          <div class="flex items-end justify-center">
+            <span id="swHMS" class="digit text-[12vw] md:text-[9rem] leading-none tracking-tight">00:00:00</span>
+            <div class="ml-3 mb-2">
+              <span id="swCenti" class="digit text-[7vw] md:text-4xl">000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <button id="swPrimary"
+                  class="btn-fat w-full bg-green-500 hover:bg-green-600 text-white text-3xl py-6">
+            Arrancar
+          </button>
+          <button id="swClear"
+                  class="btn-fat w-full bg-red-600 hover:bg-red-700 text-white text-3xl py-6">
+            Limpiar
+          </button>
+        </div>
+      </section>
+
+      <!-- CUENTA ATRÁS (CONFIGURAR) -->
+      <section id="viewCountdownSetup" class="hidden">
+        <div class="rounded-3xl border-4 border-slate-700 bg-indigo-50 panel p-4 md:p-6 mb-6">
+          <div class="flex items-end justify-center">
+            <span id="cdHMSPreview" class="digit text-[12vw] md:text-[9rem] leading-none tracking-tight">
+              00:00:00
+            </span>
+            <div class="ml-3 mb-2">
+              <span class="digit text-[7vw] md:text-4xl">000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teclado numérico -->
+        <div class="grid grid-cols-5 gap-4 mb-6">
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="5">5</button>
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="6">6</button>
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="7">7</button>
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="8">8</button>
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="9">9</button>
+
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="0">0</button>
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="1">1</button>
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="2">2</button>
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="3">3</button>
+          <button class="kp btn-fat bg-green-500 text-white text-3xl py-6" data-kp="4">4</button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+          <button id="cdSet"
+                  class="btn-fat w-full bg-green-500 hover:bg-green-600 text-white text-3xl py-6">
+            Fijar
+          </button>
+          <button id="cdSetupClear"
+                  class="btn-fat w-full bg-slate-300 hover:bg-slate-400 text-slate-900 text-3xl py-6">
+            Limpiar
+          </button>
+        </div>
+      </section>
+
+      <!-- CUENTA ATRÁS (CORRER) -->
+      <section id="viewCountdownRun" class="hidden">
+        <div class="rounded-3xl border-4 border-slate-700 bg-indigo-50 panel p-4 md:p-6 mb-6">
+          <div class="flex items-end justify-center">
+            <span id="cdHMS" class="digit text-[12vw] md:text-[9rem] leading-none tracking-tight">
+              00:00:00
+            </span>
+            <div class="ml-3 mb-2">
+              <span id="cdCenti" class="digit text-[7vw] md:text-4xl">000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <button id="cdPrimary"
+                  class="btn-fat w-full bg-green-500 hover:bg-green-600 text-white text-3xl py-6">
+            Arrancar
+          </button>
+          <button id="cdRunClear"
+                  class="btn-fat w-full bg-red-600 hover:bg-red-700 text-white text-3xl py-6">
+            Limpiar
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
