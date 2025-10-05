@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch & Countdown</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="app-container">
+
+        <section class="app-choice" id="appChoice">
+            <h1 class="app-choice__title">Choose a Tool</h1>
+            <div class="app-choice__buttons">
+                <button class="app-choice__button" id="selectStopwatchBtn">Stopwatch</button>
+                <button class="app-choice__button" id="selectCountdownBtn">Countdown</button>
+            </div>
+        </section>
+
+        <section class="timer hidden" id="stopwatch">
+            <button class="timer__back-btn" aria-label="Go back to selection">&larr; Back</button>
+            <h2 class="timer__title">Stopwatch</h2>
+            <div class="timer__display-wrapper">
+                <p class="timer__display" id="stopwatchDisplay">00:00:00.000</p>
+            </div>
+            <div class="timer__controls">
+                <button class="timer__button timer__button--control" id="stopwatchResetBtn" disabled>Reset</button>
+                <button class="timer__button timer__button--start" id="stopwatchStartStopBtn" data-action="start">Start</button>
+                <button class="timer__button timer__button--lap" id="stopwatchLapBtn" disabled>Lap</button>
+            </div>
+            <div class="timer__laps">
+                <ul class="laps__list" id="lapsList"></ul>
+            </div>
+        </section>
+
+        <section class="timer hidden" id="countdown">
+            <button class="timer__back-btn" aria-label="Go back to selection">&larr; Back</button>
+            <h2 class="timer__title">Countdown</h2>
+            <div class="timer__display-wrapper">
+                 <p class="timer__display" id="countdownDisplay">00:00:00</p>
+            </div>
+            <div class="timer__inputs" id="countdownInputs">
+                <label for="hours">H</label>
+                <input type="number" id="hours" min="0" max="99" value="0">
+                <label for="minutes">M</label>
+                <input type="number" id="minutes" min="0" max="59" value="0">
+                <label for="seconds">S</label>
+                <input type="number" id="seconds" min="0" max="59" value="10">
+            </div>
+            <div class="timer__controls">
+                <button class="timer__button timer__button--control" id="countdownResetBtn">Reset</button>
+                <button class="timer__button timer__button--start" id="countdownStartStopBtn" data-action="start">Start</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

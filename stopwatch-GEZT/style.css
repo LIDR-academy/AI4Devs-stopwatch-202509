@@ -1,0 +1,283 @@
+/* 1. ROOT VARIABLES & GLOBAL RESETS */
+:root {
+    /* Provided Color Palette */
+    --battleship-gray: #8f9491;
+    --rose-quartz: #bca3ac;
+    --thistle: #e5cedc;
+    --magnolia: #f3eaf4;
+    --lavender-blush: #eadde1;
+    
+    /* Semantic Colors */
+    --background-color: var(--magnolia);
+    --component-bg-color: var(--lavender-blush);
+    --text-color: #333;
+    --button-primary-bg: var(--rose-quartz);
+    --button-secondary-bg: var(--thistle);
+    --button-control-bg: var(--battleship-gray);
+    --button-text-color: white;
+    --border-color: var(--thistle);
+    --accent-color: var(--rose-quartz);
+
+    /* Typography */
+    --font-family-display: 'Roboto Mono', monospace;
+    --font-family-ui: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-ui);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center content */
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.hidden {
+    display: none !important; /* Utility class to hide elements */
+}
+
+
+/* 2. BEM STRUCTURED COMPONENTS */
+
+/* App Container */
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Max width for a single timer view */
+}
+
+/* Choice Screen */
+.app-choice {
+    text-align: center;
+    background-color: var(--component-bg-color);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.app-choice__title {
+    margin-bottom: 2rem;
+    color: var(--battleship-gray);
+}
+
+.app-choice__buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.app-choice__button {
+    font-family: var(--font-family-ui);
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--button-primary-bg);
+    color: var(--button-text-color);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.app-choice__button:hover {
+    transform: translateY(-3px);
+    background-color: #c9b3ba; /* A slightly darker shade of rose-quartz */
+}
+
+/* Timer Component Block */
+.timer {
+    background-color: var(--component-bg-color);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    position: relative; /* For positioning the back button */
+}
+
+.timer__back-btn {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--battleship-gray);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.timer__title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--battleship-gray);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.timer__display-wrapper {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid var(--border-color);
+}
+
+.timer__display {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Special state for countdown completion */
+.timer__display--finished {
+    animation: flash 0.5s infinite alternate;
+}
+
+@keyframes flash {
+    from { color: red; }
+    to { color: var(--text-color); }
+}
+
+.timer__controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.timer__button {
+    font-family: var(--font-family-ui);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.timer__button:active {
+    transform: scale(0.95);
+}
+
+.timer__button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Button Modifiers */
+.timer__button--start { background-color: var(--button-primary-bg); }
+.timer__button--start[data-action="stop"] { background-color: #e74c3c; } /* Red for stop action */
+.timer__button--lap { background-color: var(--button-secondary-bg); }
+.timer__button--control { background-color: var(--button-control-bg); color: #fff; }
+
+/* Countdown Inputs */
+.timer__inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.timer__inputs label {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.timer__inputs input {
+    width: 60px;
+    padding: 0.5rem;
+    font-family: var(--font-family-display);
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
+}
+
+/* Laps List */
+.timer__laps {
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 10px; /* For scrollbar spacing */
+}
+
+.laps__list {
+    list-style: none;
+    padding: 0 1rem;
+}
+
+.laps__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-family-display);
+}
+
+.laps__item:last-child {
+    border-bottom: none;
+}
+
+.laps__item span:first-child {
+    color: var(--battleship-gray);
+}
+
+
+/* 3. RESPONSIVENESS (Mobile-First) */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .app-choice__button {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    .timer {
+        padding: 1.5rem;
+        padding-top: 3rem; /* Add space for back button */
+    }
+    
+    .timer__back-btn {
+        top: 10px;
+        left: 15px;
+    }
+
+    .timer__display-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .timer__display {
+        font-size: 1.5rem;
+    }
+
+    .timer__button {
+        width: 70px;
+        height: 70px;
+    }
+
+    .timer__inputs input {
+        width: 50px;
+        font-size: 1rem;
+    }
+}
