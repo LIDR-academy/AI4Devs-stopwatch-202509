@@ -33,6 +33,6 @@
 3. Timer Suite, el titulo, deberia cambairse a español.
 4. El sonido cuando llega a cero es muy corto, debe seguir sonando hasta que tome otra opcion.
 
-# Iteración 2: elimianr boton "volver" duplicado
+# Iteración 3: elimianr boton "volver" duplicado
 
 1. El boton en la parte superior de volver funciona bien ahora, aparece en los submenues. pero sigue mostrandose el del pie. ese deberia elimianrse
