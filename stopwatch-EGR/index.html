@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cronómetro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="display-card" aria-hidden="false">
+      <div class="time-row" id="time-row" role="timer" aria-live="off">
+        <span id="hours">00</span>
+        <span class="sep">:</span>
+        <span id="minutes">00</span>
+        <span class="sep">:</span>
+        <span id="seconds">00</span>
+      </div>
+      <!-- Milisegundos debajo de la linea principal -->
+      <div class="ms-row">
+        <span id="milliseconds">000</span>
+      </div>
+    </header>
+
+    <div class="buttons">
+      <!-- Botón que alterna Start / Pause / Continue -->
+      <button id="toggleBtn" class="btn green" aria-pressed="false">Start</button>
+      <!-- Botón Clear que reinicia a 00:00:00:000 -->
+      <button id="clearBtn" class="btn red">Clear</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

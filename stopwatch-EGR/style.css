@@ -1,0 +1,141 @@
+/* styles.css
+   Estilos responsivos y pulidos para el cronómetro.
+   Evita usar variables no soportadas por navegadores antiguos -> estilo clásico.
+*/
+
+/* Reset minimal */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f7f8fb;
+  --card-bg: #e9edff; /* tono claro azul similar al ejemplo */
+  --border: #333;
+  --green: #53d05c;
+  --red: #e34038;
+  --shadow: 0 6px 0 rgba(0,0,0,0.25);
+  --radius: 28px;
+  --font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-family);
+  background: var(--bg);
+  color: #111;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 16px;
+}
+
+/* Tarjeta de display principal */
+.display-card {
+  background: var(--card-bg);
+  border: 8px solid var(--border);
+  border-radius: 36px;
+  padding: 30px 24px 14px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  margin-bottom: 36px;
+}
+
+/* Fila principal HH:MM:SS */
+.time-row {
+  font-weight: 700;
+  font-size: clamp(48px, 10vw, 160px); /* responsive size */
+  letter-spacing: 6px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  user-select: none;
+}
+
+/* Separador : */
+.sep {
+  margin: 0 6px;
+}
+
+/* Estilo de números (tamaño grande) */
+.time-row span {
+  display: inline-block;
+  min-width: 1.5ch;
+  text-align: center;
+}
+
+/* Fila de milisegundos debajo, alineada a la derecha como en la imagen */
+.ms-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 22px;
+  margin-top: 6px;
+}
+
+.ms-row #milliseconds {
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 600;
+  margin-right: 4px;
+  user-select: none;
+}
+
+/* Botones centrados */
+.buttons {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Estilo base botón */
+.btn {
+  min-width: 240px;
+  min-height: 100px;
+  border-radius: 18px;
+  border: 6px solid var(--border);
+  font-size: clamp(20px, 3.2vw, 44px);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 0 rgba(0,0,0,0.25);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  user-select: none;
+}
+
+/* Verde / Rojo */
+.btn.green {
+  background: linear-gradient(#66ee7a, var(--green));
+  color: #041202;
+}
+
+.btn.red {
+  background: linear-gradient(#f05b4f, var(--red));
+  color: #120100;
+}
+
+/* Presionado visual */
+.btn:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+}
+
+/* Focus accesible */
+.btn:focus {
+  outline: 3px solid rgba(0,0,0,0.12);
+  outline-offset: 4px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .display-card { padding: 18px; border-radius: 20px; }
+  .btn { min-width: 160px; min-height: 84px; font-size: 22px; }
+  .ms-row { padding-right: 12px; }
+}
