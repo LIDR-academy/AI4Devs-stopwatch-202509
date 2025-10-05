@@ -1,156 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stopwatch & Countdown</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
 
-  <body>
-    <div class="app" id="app">
-      <div class="container" role="application" aria-labelledby="appTitle">
-        <header>
-          <h1 id="appTitle">Stopwatch & Countdown</h1>
-          <div aria-hidden="true" class="meta">
-            Minimal • Accessible • Vanilla JS
-          </div>
-        </header>
+    <main class="app-container">
 
-        <main class="main" id="main">
-          <!-- HOME -->
-          <section id="home" class="home" aria-label="Start screen">
-            <div
-              role="button"
-              tabindex="0"
-              class="mode stop"
-              id="btnStopwatch"
-              aria-pressed="false"
-              aria-label="Open stopwatch"
-            >
-              <small>Stopwatch</small>
-              <p>Measure elapsed time</p>
+        <section class="timer" id="stopwatch">
+            <h2 class="timer__title">Stopwatch</h2>
+            <div class="timer__display-wrapper">
+                <p class="timer__display" id="stopwatchDisplay">00:00:00.000</p>
             </div>
-            <div
-              role="button"
-              tabindex="0"
-              class="mode count"
-              id="btnCountdown"
-              aria-pressed="false"
-              aria-label="Open countdown"
-            >
-              <small>Countdown</small>
-              <p>Set a timer</p>
+            <div class="timer__controls">
+                <button class="timer__button timer__button--control" id="stopwatchResetBtn" disabled>Reset</button>
+                <button class="timer__button timer__button--start" id="stopwatchStartStopBtn" data-action="start">Start</button>
+                <button class="timer__button timer__button--lap" id="stopwatchLapBtn" disabled>Lap</button>
             </div>
-          </section>
-
-          <!-- STOPWATCH -->
-          <section
-            id="stopwatchView"
-            class="card"
-            hidden
-            aria-hidden="true"
-            aria-label="Stopwatch"
-          >
-            <button
-              class="back"
-              id="backFromStopwatch"
-              aria-label="Back to home"
-            >
-              ← Back
-            </button>
-
-            <div class="display" aria-live="polite" aria-atomic="true">
-              <div class="time" id="stopwatchTime">00:00:00.000</div>
-              <div class="subtime" id="stopwatchState">Ready</div>
+            <div class="timer__laps">
+                <ul class="laps__list" id="lapsList"></ul>
             </div>
+        </section>
 
-            <div class="controls" role="group" aria-label="Stopwatch controls">
-              <button class="btn green" id="swStart">Start</button>
-              <button class="btn yellow" id="swPause" disabled>Pause</button>
-              <button class="btn blue" id="swContinue" disabled>
-                Continue
-              </button>
-              <button class="btn red" id="swClear">Clear</button>
+        <section class="timer" id="countdown">
+            <h2 class="timer__title">Countdown</h2>
+            <div class="timer__display-wrapper">
+                 <p class="timer__display" id="countdownDisplay">00:00:00</p>
             </div>
-          </section>
-
-          <!-- COUNTDOWN -->
-          <section
-            id="countdownView"
-            class="card"
-            hidden
-            aria-hidden="true"
-            aria-label="Countdown timer"
-          >
-            <button
-              class="back"
-              id="backFromCountdown"
-              aria-label="Back to home"
-            >
-              ← Back
-            </button>
-
-            <div
-              class="display"
-              id="countdownDisplay"
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              <div class="time" id="countTime">00:00:00.000</div>
-              <div class="subtime" id="countState">Set time & press Set</div>
+            <div class="timer__inputs" id="countdownInputs">
+                <label for="hours">H</label>
+                <input type="number" id="hours" min="0" max="99" value="0">
+                <label for="minutes">M</label>
+                <input type="number" id="minutes" min="0" max="59" value="0">
+                <label for="seconds">S</label>
+                <input type="number" id="seconds" min="0" max="59" value="10">
             </div>
-
-            <div class="fields" role="group" aria-label="Countdown time input">
-              <div class="field">
-                <label for="hours">Hours</label>
-                <input
-                  id="hours"
-                  type="number"
-                  min="0"
-                  max="99"
-                  value="0"
-                  inputmode="numeric"
-                />
-              </div>
-              <div class="field">
-                <label for="minutes">Minutes</label>
-                <input
-                  id="minutes"
-                  type="number"
-                  min="0"
-                  max="59"
-                  value="0"
-                  inputmode="numeric"
-                />
-              </div>
-              <div class="field">
-                <label for="seconds">Seconds</label>
-                <input
-                  id="seconds"
-                  type="number"
-                  min="0"
-                  max="59"
-                  value="0"
-                  inputmode="numeric"
-                />
-              </div>
+            <div class="timer__controls">
+                <button class="timer__button timer__button--control" id="countdownResetBtn">Reset</button>
+                <button class="timer__button timer__button--start" id="countdownStartStopBtn" data-action="start">Start</button>
             </div>
+        </section>
 
-            <div class="controls" role="group" aria-label="Countdown controls">
-              <button class="btn muted" id="cdSet">Set</button>
-              <button class="btn green" id="cdStart" disabled>Start</button>
-              <button class="btn yellow" id="cdPause" disabled>Pause</button>
-              <button class="btn blue" id="cdContinue" disabled>
-                Continue
-              </button>
-              <button class="btn red" id="cdClear">Clear</button>
-            </div>
-          </section>
-        </main>
-      </div>
-    </div>
+    </main>
 
-    <script src="script.js" defer></script>
-  </body>
+    <script src="script.js"></script>
+</body>
 </html>
