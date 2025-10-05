@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Premium Classic Stopwatch & Countdown</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Stopwatch · Countdown</h1>
+    </header>
+
+    <main class="container">
+      <!-- Stopwatch -->
+      <section class="module" id="sw">
+        <h2 class="title">Stopwatch</h2>
+        <div class="display led" id="sw-display" aria-live="polite">
+          <span class="time" id="sw-main">00:00:00</span>
+          <span class="ms" id="sw-ms">000</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-green" id="sw-start">Start</button>
+          <button class="btn btn-yellow" id="sw-pause">Pause</button>
+          <button class="btn btn-red" id="sw-clear">Clear</button>
+          <button class="btn btn-gray" id="sw-lap">Lap</button>
+        </div>
+        <ol id="sw-laps" class="laps" aria-label="Lap times"></ol>
+      </section>
+
+      <!-- Countdown -->
+      <section class="module" id="cd">
+        <h2 class="title">Countdown</h2>
+        <div class="display led" id="cd-display" aria-live="polite">
+          <span class="time" id="cd-main">00:01:00</span>
+          <span class="ms" id="cd-ms">000</span>
+        </div>
+
+        <form class="inputs" id="cd-form" autocomplete="off">
+          <label>Min <input id="cd-min" type="number" min="0" value="1"></label>
+          <label>Sec <input id="cd-sec" type="number" min="0" max="59" value="0"></label>
+          <button type="button" class="btn btn-gray" id="cd-set">Set</button>
+        </form>
+
+        <div class="actions">
+          <button class="btn btn-green" id="cd-start">Start</button>
+          <button class="btn btn-yellow" id="cd-pause">Pause</button>
+          <button class="btn btn-red" id="cd-clear">Clear</button>
+          <div class="presets">
+            <button class="btn btn-gray preset" data-sec="30">30s</button>
+            <button class="btn btn-gray preset" data-sec="60">1m</button>
+            <button class="btn btn-gray preset" data-sec="300">5m</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <button id="btn-fullscreen" class="btn btn-outline">Fullscreen</button>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
