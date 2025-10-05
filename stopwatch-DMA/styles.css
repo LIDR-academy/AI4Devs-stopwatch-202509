@@ -1,0 +1,277 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Main Container */
+.container {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Mode Switcher */
+.mode-switcher {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    background: #f0f0f0;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.mode-tab {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mode-tab:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.mode-tab.active {
+    background: #4CAF50;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.mode-tab:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+/* Timer Display */
+.timer-display {
+    margin: 40px 0;
+    padding: 40px 20px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.time {
+    font-size: 80px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    font-variant-numeric: tabular-nums;
+}
+
+.milliseconds {
+    font-size: 40px;
+    color: #666;
+    font-family: 'Courier New', monospace;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Countdown Input */
+.countdown-input {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 15px 10px;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.countdown-input label {
+    text-align: right;
+    color: #666;
+    font-size: 14px;
+}
+
+.countdown-input input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background: #ffffff;
+    color: #333;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+.countdown-input input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.countdown-input input::-webkit-inner-spin-button,
+.countdown-input input::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.btn-primary {
+    background: #4CAF50;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary.pause {
+    background: #ff9800;
+}
+
+.btn-primary.pause:hover {
+    background: #f57c00;
+}
+
+.btn-primary.continue {
+    background: #2196F3;
+}
+
+.btn-primary.continue:hover {
+    background: #1976D2;
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: #666;
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background: #f5f5f5;
+    border-color: #999;
+    transform: translateY(-1px);
+}
+
+.btn:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Error Message */
+.error-message {
+    margin-top: 20px;
+    padding: 12px;
+    background: #ffebee;
+    border: 1px solid #ef5350;
+    border-radius: 4px;
+    color: #c62828;
+    font-size: 14px;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .time {
+        font-size: 48px;
+        letter-spacing: 2px;
+    }
+
+    .milliseconds {
+        font-size: 24px;
+    }
+
+    .mode-tab {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 12px 30px;
+        font-size: 16px;
+        min-width: 100px;
+    }
+
+    .countdown-input {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .countdown-input label {
+        text-align: left;
+    }
+}
+
+@media (max-width: 400px) {
+    .time {
+        font-size: 36px;
+    }
+
+    .milliseconds {
+        font-size: 18px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
