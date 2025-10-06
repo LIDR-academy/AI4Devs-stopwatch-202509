@@ -245,14 +245,6 @@ hoursInput.addEventListener('keypress', preventNonNumeric);
 minutesInput.addEventListener('keypress', preventNonNumeric);
 secondsInput.addEventListener('keypress', preventNonNumeric);
 
-// Validate input values
-function validateInput(input, max) {
-    let value = parseInt(input.value) || 0;
-    if (value < 0) value = 0;
-    if (value > max) value = max;
-    input.value = value;
-}
-
 // Event Listeners
 startBtn.addEventListener('click', startTimer);
 pauseBtn.addEventListener('click', handlePauseResumeClick);
