@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stopwatch & Countdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom Tailwind Config for precise colors -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'sw-light': '#e9ecfc',
+            'sw-green': '#77ff58',
+            'sw-green-d': '#2ecc40',
+            'sw-red': '#f33627',
+            'sw-red-d': '#c82316',
+            'sw-black': '#222',
+          },
+          fontFamily: {
+            'sw': ['Arial Rounded MT Bold', 'Arial', 'sans-serif'],
+          },
+          borderRadius: {
+            'sw': '2.5rem',
+          },
+          borderWidth: {
+            '3': '3px',
+          },
+          spacing: {
+            'sw-disp': '3.5rem',
+            'sw-btn': '2.2rem',
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial+Rounded+MT+Bold:400,700&display=swap" />
+</head>
+<body class="bg-white min-h-screen flex flex-col items-center justify-center font-sw">
+  <div id="app" class="w-full max-w-3xl flex flex-col items-center px-2 py-8"></div>
+  <script src="script.js"></script>
+</body>
+</html>
