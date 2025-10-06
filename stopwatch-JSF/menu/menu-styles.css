@@ -1,0 +1,127 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Main Container */
+.menu-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Menu Options */
+.menu-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+/* Menu Button */
+.menu-button {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 0;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: block;
+    aspect-ratio: 1;
+}
+
+.menu-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.menu-button:active {
+    transform: translateY(-2px);
+}
+
+.button-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 40px;
+}
+
+/* Arrow Icons */
+.arrow-icon {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.arrow-up {
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+    clip-path: polygon(50% 0%, 100% 70%, 85% 70%, 85% 100%, 15% 100%, 15% 70%, 0% 70%);
+    border-radius: 10px;
+}
+
+.arrow-down {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 50%, #dc2626 100%);
+    clip-path: polygon(15% 0%, 85% 0%, 85% 30%, 100% 30%, 50% 100%, 0% 30%, 15% 30%);
+    border-radius: 10px;
+}
+
+/* Title */
+.menu-button h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-options {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .arrow-icon {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+    
+    .button-content {
+        padding: 30px;
+    }
+    
+    .menu-button h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .arrow-icon {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+    
+    .button-content {
+        padding: 25px;
+    }
+    
+    .menu-button h2 {
+        font-size: 24px;
+    }
+}

@@ -209,3 +209,51 @@ Create a stopwatch web application using HTML, CSS, and JavaScript following web
 * Lap times should be displayed in a scrollable list if there are many entries
 * The Pause/Resume button text should change dynamically based on timer state
 Please create this as three separate files for proper code organization and maintainability.
+
+--------------------------------------------------------
+
+Prompt 11:
+You are an expert in web development using HTML, JavaScript and CSS.
+Create a stopwatch and countdown web page taking into consideration the following requirements:
+# Core functionalities:
+* There should be a menu page with two options "Stopwatch" and "Countdown".
+* When clicking on "Stopwatch", a new page should be opened with the stopwatch functionality which is already implemented in the index.html, scripts.js and styles.css files that are attached.
+* When clicking on "Countdown", a new page should be opened with the countdown functionality, which should be implemented from scratch taking into consideration the following requirements:
+   * Display time in HH:MM:SS starting with 00:00:00.
+   * Decide the best user experience for the user to enter the time for the countdown. For example, it could be set of buttons from 0 to 9.
+   * There should be there buttons: "Start", "Pause" and "Clear"
+      * The "Start" button starts the countdown.
+      * The "Pause" button pauses the countdown. When clicked, it should change its label to "Resume", allowing the user to continue the countdown from where it was paused. When "Resume" is clicked, it's label should change back to "Pause".
+      * The "Clear" button stops the countdown and sets the time back to 00:00:00.
+   * Display an alert when the countdown finishes. The alert's message is "Done! Do whatever you need to do".
+#Code organization:
+* Follow the code organization that is in the files attached.
+* For the menu page, the HTML structure should be in one file (menu.html) and the CSS styles in another file (menu-styles.css). If JavaScript logic is needed, then create a separate file for the scripts (menu-scripts.js).
+* Since the three files attached contain the stopwatch functionality, they should be renamed to stopwatch.html, stopwatch-scripts.js and stopwatch-styles.css files.
+* For the countdown functionality, create three separate files:
+   * countdown.html for the HTML structure logic.
+   * countdown-scripts.js for the JavaScript logic.
+   * countdown-styles.css for the CSS styles.
+#Design requirements:
+* Since the stopwatch functionality is already implemented in the three files attached, leave the things as they are.
+* For the menu page and countdown functionality, follow the design requirements that are in files attached.
+#User experience:
+* For the countdown functionality, the "Start", "Pause" and "Clear" buttons should have the same user experience (states) as the stopwatch functionality.
+* Do not add any kind of animations.
+
+Prompt 12:
+Taking into consideration the implementation you made, do the following changes:
+For the menu page, instead of having two simple links, create two big buttons similar to the image "menu" that is attached. This new design should be responsive.
+For the countdown functionality, add restrictions for each of the input fields that won't let user enter wrong numbers. For example, on the hours input field, the user cannot enter the number 3 as the first digit because the hours go from 0 to 23. Do the equivalent restrictions for the minutes and seconds input fields
+
+Prompt 13:
+Is there any way you can improve the input fields' user experience?
+
+Prompt 14:
+Implement the option 2: click-to-select.
+
+Prompt 15:
+For the countdown functionality, remove the logic related to "If user tries to enter 3-9 as first digit, it automatically prepends 0". Just do not let the user to enter an invalid digit (for example, 3 as first digit in the hours input field) when all the content in that field is selected.
+
+Prompt 16:
+Update the navigations on the menu now that both the countdown and stopwatch files are into "countdown" and "stopwatch" folders.

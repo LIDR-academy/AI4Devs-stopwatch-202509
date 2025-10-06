@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <link rel="stylesheet" href="countdown-styles.css">
+</head>
+<body>
+    <main class="countdown-container">
+        <h1>Countdown</h1>
+        
+        <!-- Timer Display -->
+        <div class="timer-display" id="timerDisplay">00:00:00</div>
+        
+        <!-- Time Input Section -->
+        <div class="input-section" id="inputSection">
+            <div class="time-inputs">
+                <div class="time-input-group">
+                    <label>Hours</label>
+                    <input type="text" id="hoursInput" maxlength="2" value="00" class="time-input">
+                </div>
+                <div class="time-input-group">
+                    <label>Minutes</label>
+                    <input type="text" id="minutesInput" maxlength="2" value="00" class="time-input">
+                </div>
+                <div class="time-input-group">
+                    <label>Seconds</label>
+                    <input type="text" id="secondsInput" maxlength="2" value="00" class="time-input">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Control Buttons -->
+        <div class="controls">
+            <button id="startBtn" class="btn btn-start">Start</button>
+            <button id="pauseBtn" class="btn btn-pause" disabled>Pause</button>
+            <button id="clearBtn" class="btn btn-clear" disabled>Clear</button>
+        </div>
+    </main>
+    
+    <script src="countdown-scripts.js"></script>
+</body>
+</html>
