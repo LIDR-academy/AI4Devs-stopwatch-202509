@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer and Countdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header, .footer {
+            background-color: #1e3a8a;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header {
+            justify-content: center;
+        }
+
+        .footer {
+            margin-top: auto;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+        }
+
+        .back-arrow {
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-right: 18px solid #00ff00;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            min-height: calc(100vh - 160px);
+            max-height: calc(100vh - 160px);
+            overflow: hidden;
+        }
+
+        .screen {
+            display: none;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Landing Screen */
+        .landing-screen {
+            text-align: center;
+        }
+
+        .choice-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 60px 0;
+            gap: 40px;
+        }
+
+        .choice-option {
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+            padding: 40px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .choice-option:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .choice-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+
+        .choice-arrow {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        .stopwatch-arrow {
+            background: linear-gradient(to top, #10b981, #34d399);
+            border: 2px solid #000;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .countdown-arrow {
+            background: linear-gradient(to bottom, #ef4444, #f87171);
+            border: 2px solid #000;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+        }
+
+        /* Timer Display */
+        .timer-display {
+            background-color: #e6e6fa;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .main-time {
+            font-size: 300px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .milliseconds {
+            font-size: 32px;
+            color: #000;
+            margin-top: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-height: 800px) {
+            .main-time {
+                font-size: 200px;
+            }
+            .milliseconds {
+                font-size: 28px;
+            }
+            .timer-display {
+                padding: 30px;
+                margin: 20px 0;
+            }
+            .action-buttons {
+                margin: 40px 0;
+            }
+            .keypad {
+                margin: 30px 0;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .main-time {
+                font-size: 150px;
+            }
+            .milliseconds {
+                font-size: 24px;
+            }
+            .timer-display {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            .action-buttons {
+                margin: 30px 0;
+            }
+            .keypad {
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-time {
+                font-size: 120px;
+            }
+            .milliseconds {
+                font-size: 20px;
+            }
+            .btn {
+                padding: 20px 40px;
+                font-size: 24px;
+            }
+            .keypad-btn {
+                padding: 15px;
+                font-size: 20px;
+                min-height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-time {
+                font-size: 80px;
+            }
+            .milliseconds {
+                font-size: 18px;
+            }
+            .keypad {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 60px 0;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .btn {
+            padding: 30px 60px;
+            border: 3px solid #000;
+            border-radius: 15px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn-start {
+            background-color: #00ff00;
+            color: #000;
+        }
+
+        .btn-clear {
+            background-color: #ff0000;
+            color: #000;
+        }
+
+        .btn-set {
+            background-color: #00ff00;
+            color: #000;
+        }
+
+        .btn-gray {
+            background-color: #9ca3af;
+            color: #000;
+        }
+
+        /* Keypad */
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin: 40px 0;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .keypad-btn {
+            padding: 20px;
+            border: 3px solid #000;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #00ff00;
+            color: #000;
+            transition: all 0.3s ease;
+            min-height: 60px;
+        }
+
+        .keypad-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .keypad-btn.clear {
+            background-color: #9ca3af;
+        }
+
+        .keypad-btn.set {
+            background-color: #00ff00;
+        }
+
+        /* Time Input */
+        .time-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .time-segment {
+            width: 80px;
+            height: 60px;
+            border: 3px solid #000;
+            border-radius: 10px;
+            background-color: #e6e6fa;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        .time-separator {
+            font-size: 36px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .screen-title {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title" id="header-title">Timer and Countdown</div>
+    </div>
+    
+    <div class="main-content">
+        <!-- Landing Screen -->
+        <div id="landing-screen" class="screen active">
+            <div class="landing-screen">
+                <h1 class="screen-title">Choose Your Timer</h1>
+                <div class="choice-container">
+                    <div class="choice-option" onclick="showStopwatch()">
+                        <div class="choice-title">Stopwatch</div>
+                        <div class="choice-arrow stopwatch-arrow"></div>
+                    </div>
+                    <div class="choice-option" onclick="showCountdownSet()">
+                        <div class="choice-title">Countdown</div>
+                        <div class="choice-arrow countdown-arrow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stopwatch Screen -->
+        <div id="stopwatch-screen" class="screen">
+            <div class="timer-display">
+                <div class="main-time" id="stopwatch-time">00:00:00</div>
+                <div class="milliseconds" id="stopwatch-ms">000</div>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-start" id="stopwatch-start" onclick="toggleStopwatch()">Start</button>
+                <button class="btn btn-clear" onclick="clearStopwatch()">Clear</button>
+            </div>
+        </div>
+
+        <!-- Countdown Set Screen -->
+        <div id="countdown-set-screen" class="screen">
+            <div class="timer-display">
+                <div class="main-time" id="countdown-set-time">00:00:00</div>
+            </div>
+            <div class="keypad">
+                <button class="keypad-btn" onclick="addDigit('5')">5</button>
+                <button class="keypad-btn" onclick="addDigit('6')">6</button>
+                <button class="keypad-btn" onclick="addDigit('7')">7</button>
+                <button class="keypad-btn" onclick="addDigit('8')">8</button>
+                <button class="keypad-btn" onclick="addDigit('9')">9</button>
+                <button class="keypad-btn set" onclick="setCountdown()">Set</button>
+                <button class="keypad-btn" onclick="addDigit('0')">0</button>
+                <button class="keypad-btn" onclick="addDigit('1')">1</button>
+                <button class="keypad-btn" onclick="addDigit('2')">2</button>
+                <button class="keypad-btn" onclick="addDigit('3')">3</button>
+                <button class="keypad-btn" onclick="addDigit('4')">4</button>
+                <button class="keypad-btn clear" onclick="clearCountdownSet()">Clear</button>
+            </div>
+        </div>
+
+        <!-- Countdown Execute Screen -->
+        <div id="countdown-execute-screen" class="screen">
+            <div class="timer-display">
+                <div class="main-time" id="countdown-time">00:00:00</div>
+                <div class="milliseconds" id="countdown-ms">000</div>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-start" id="countdown-start" onclick="toggleCountdown()">Start</button>
+                <button class="btn btn-clear" onclick="clearCountdown()">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <button class="back-button" onclick="goBack()">
+            <div class="back-arrow"></div>
+            Back
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
