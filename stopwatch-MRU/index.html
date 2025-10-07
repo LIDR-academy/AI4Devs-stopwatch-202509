@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch & Timer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background-color: #1e1e1e;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .mode-switch {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+      }
+
+      .mode-btn {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .mode-btn.active {
+        background-color: #00ff9d;
+        color: #000;
+      }
+
+      .display {
+        font-family: "Courier New", monospace;
+        font-size: 4rem;
+        font-weight: bold;
+        text-align: center;
+        color: #00ff9d;
+        margin: 1rem 0;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .control-btn {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        min-width: 100px;
+      }
+
+      .control-btn:hover {
+        background-color: #444;
+      }
+
+      .control-btn.start,
+      .control-btn.pause {
+        background-color: #28a745;
+      }
+
+      .control-btn.continue {
+        background-color: #007bff;
+      }
+
+      .control-btn.clear {
+        background-color: #dc3545;
+      }
+
+      .display {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 0.1em;
+      }
+
+      .display .time {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+      }
+
+      .display .milliseconds {
+        font-size: 0.4em;
+        line-height: 1;
+        margin-top: -0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .time-up {
+        animation: flash 1s infinite;
+      }
+
+      @keyframes flash {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .countdown-input {
+        display: none;
+        margin-top: 0.5rem;
+        text-align: center;
+      }
+
+      .countdown-input.visible {
+        display: block;
+      }
+
+      .countdown-input input {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #555;
+        padding: 0.5rem;
+        border-radius: 5px;
+        width: 60px;
+        text-align: center;
+        margin: 0 0.25rem;
+      }
+
+      @media (max-width: 480px) {
+        .display {
+          font-size: 3rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        .control-btn {
+          padding: 0.5rem 1rem;
+          min-width: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="mode-switch">
+        <button class="mode-btn active" data-mode="stopwatch">Stopwatch</button>
+        <button class="mode-btn" data-mode="countdown">Countdown</button>
+      </div>
+
+      <div class="display">
+        <span class="time">00:00:00</span>
+        <span class="milliseconds">00</span>
+      </div>
+
+      <div class="countdown-input">
+        <input type="number" id="hours" min="0" max="99" placeholder="HH" />:
+        <input type="number" id="minutes" min="0" max="59" placeholder="MM" />:
+        <input type="number" id="seconds" min="0" max="59" placeholder="SS" />
+      </div>
+
+      <div class="controls">
+        <button class="control-btn start" id="startBtn">Start</button>
+        <button class="control-btn pause" id="pauseBtn" style="display: none">
+          Pause
+        </button>
+        <button
+          class="control-btn continue"
+          id="continueBtn"
+          style="display: none"
+        >
+          Continue
+        </button>
+        <button class="control-btn clear" id="clearBtn">Clear</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
