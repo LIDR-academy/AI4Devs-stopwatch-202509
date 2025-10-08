@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Stopwatch & Countdown</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>Stopwatch & Countdown</h1>
+
+			<!-- Tab Navigation -->
+			<div class="tab-navigation">
+				<button class="tab-btn active" data-tab="stopwatch">Stopwatch</button>
+				<button class="tab-btn" data-tab="countdown">Countdown</button>
+			</div>
+
+			<!-- Tab Content -->
+			<div class="tab-content">
+				<!-- Stopwatch Tab -->
+				<div class="tab-panel active" id="stopwatch-tab">
+					<div class="timer-section">
+						<div class="display-container">
+							<div class="time-display" id="stopwatch-display">
+								<span class="main-time">00:00:00</span>
+								<span class="milliseconds">000</span>
+							</div>
+						</div>
+						<div class="controls">
+							<button class="btn btn-start" id="stopwatch-start">Start</button>
+							<button class="btn btn-clear" id="stopwatch-clear">Clear</button>
+						</div>
+						<div class="log-section">
+							<h3>Stopwatch Log</h3>
+							<div class="log-container" id="stopwatch-log">
+								<p class="log-empty">No pauses recorded yet</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Countdown Tab -->
+				<div class="tab-panel" id="countdown-tab">
+					<div class="timer-section">
+						<div class="display-container">
+							<div class="time-display" id="countdown-display">
+								<span class="main-time">00:00:00</span>
+								<span class="milliseconds">000</span>
+							</div>
+						</div>
+						<div class="time-input">
+							<div
+								class="validation-message"
+								id="countdown-validation"
+								style="display: none"
+							>
+								Please enter a valid countdown time
+							</div>
+							<div class="input-row">
+								<input
+									type="number"
+									id="hours"
+									placeholder="HH"
+									min="0"
+									max="23"
+									value="0"
+								/>
+								<span>:</span>
+								<input
+									type="number"
+									id="minutes"
+									placeholder="MM"
+									min="0"
+									max="59"
+									value="0"
+								/>
+								<span>:</span>
+								<input
+									type="number"
+									id="seconds"
+									placeholder="SS"
+									min="0"
+									max="59"
+									value="0"
+								/>
+							</div>
+						</div>
+						<div class="controls">
+							<button class="btn btn-start" id="countdown-start">Start</button>
+							<button class="btn btn-clear" id="countdown-clear">Clear</button>
+						</div>
+						<div
+							class="completion-message"
+							id="countdown-completion"
+							style="display: none"
+						>
+							<h3>Countdown has ended</h3>
+						</div>
+						<div class="log-section">
+							<h3>Countdown Log</h3>
+							<div class="log-container" id="countdown-log">
+								<p class="log-empty">No pauses recorded yet</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
