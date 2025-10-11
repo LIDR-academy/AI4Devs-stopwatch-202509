@@ -1,0 +1,150 @@
+/* styles.css */
+:root {
+    --bg: #f6f7fb;
+    --screen-bg: #e9ecff;
+    --screen-border: #2f2f2f;
+    --text: #101010;
+  
+    --green-1: #77eb63;
+    --green-2: #38c03a;
+  
+    --red-1: #f04234;
+    --red-2: #c9261f;
+  
+    --radius-xl: 28px;
+    --radius-xxl: 38px;
+  
+    --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --shadow-inset: inset 0 2px 0 rgba(255, 255, 255, 0.6);
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol";
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .wrapper {
+    min-height: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+  
+  .screen {
+    position: relative;
+    width: min(95vw, 1200px);
+    background: var(--screen-bg);
+    border: 14px solid var(--screen-border);
+    border-radius: var(--radius-xxl);
+    padding: clamp(18px, 4vw, 36px) clamp(20px, 4.8vw, 44px);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .time {
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    font-size: clamp(48px, 14vw, 220px);
+    line-height: 1;
+    color: #000;
+  }
+  
+  .time .sep {
+    padding: 0 0.08em;
+  }
+  
+  .ms {
+    position: absolute;
+    right: clamp(16px, 3vw, 36px);
+    bottom: clamp(10px, 1.8vw, 22px);
+    font-weight: 800;
+    font-size: clamp(16px, 4.2vw, 52px);
+    color: #000;
+  }
+  
+  .controls {
+    display: flex;
+    gap: clamp(16px, 4vw, 48px);
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .btn {
+    border: 0;
+    border-radius: var(--radius-xl);
+    padding: clamp(14px, 2.6vw, 28px) clamp(36px, 6vw, 72px);
+    font-size: clamp(22px, 5vw, 64px);
+    font-weight: 800;
+    color: #111;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft), var(--shadow-inset);
+    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+    user-select: none;
+  }
+  
+  .btn:focus-visible {
+    outline: 4px solid rgba(56, 139, 252, 0.6);
+    outline-offset: 4px;
+  }
+  
+  .btn:active {
+    transform: translateY(1px) scale(0.997);
+  }
+  
+  .btn-start {
+    background: linear-gradient(to bottom, var(--green-1), var(--green-2));
+  }
+  
+  .btn-start:hover {
+    filter: brightness(0.98);
+  }
+  
+  .btn-clear {
+    background: linear-gradient(to bottom, var(--red-1), var(--red-2));
+  }
+  
+  .btn-clear:hover {
+    filter: brightness(0.98);
+  }
+  
+  .hint {
+    margin: 4px 0 0;
+    font-size: clamp(12px, 2.4vw, 16px);
+    opacity: 0.7;
+    text-align: center;
+  }
+  
+  .visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+  }
+  
