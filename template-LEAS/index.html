@@ -1,0 +1,55 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cronómetro</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="wrapper">
+      <h1 class="visually-hidden">Cronómetro</h1>
+
+      <section
+        class="screen"
+        id="screen"
+        role="timer"
+        aria-live="polite"
+        aria-atomic="true"
+        aria-label="Tiempo transcurrido"
+      >
+        <div class="time">
+          <span id="hh">00</span><span class="sep">:</span>
+          <span id="mm">00</span><span class="sep">:</span>
+          <span id="ss">00</span>
+        </div>
+        <div class="ms" id="ms">000</div>
+      </section>
+
+      <div class="controls">
+        <button
+          id="startBtn"
+          class="btn btn-start"
+          aria-pressed="false"
+          aria-label="Iniciar cronómetro (espacio para iniciar o pausar)"
+        >
+          Start
+        </button>
+        <button
+          id="clearBtn"
+          class="btn btn-clear"
+          aria-label="Reiniciar cronómetro (Escape para limpiar)"
+        >
+          Clear
+        </button>
+      </div>
+
+      <p class="hint" id="hint">
+        Barra espaciadora: Start/Pause/Resume &nbsp;•&nbsp; Escape: Clear
+      </p>
+    </main>
+
+    <script src="index.js" defer></script>
+  </body>
+</html>
