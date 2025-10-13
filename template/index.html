@@ -1,13 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cronómetro Simple</title>
+  <meta name="description" content="Cronómetro sencillo y accesible con rAF y performance.now()" />
+  <link rel="preload" href="assets/css/styles.css" as="style" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="app-header" role="banner">
+    <h1 class="app-title">Cronómetro Simple</h1>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <section class="timer" aria-labelledby="timer-label">
+      <h2 id="timer-label" class="sr-only">Marcador de tiempo</h2>
+      <output id="display" class="display" role="status" aria-live="polite" aria-atomic="true">00:00:00.000</output>
+
+      <div class="controls" role="group" aria-label="Controles del cronómetro">
+        <button id="startPause" class="btn btn-primary" data-state="stopped" aria-label="Iniciar cronómetro">
+          <span data-start>Iniciar</span>
+          <span data-pause class="hidden">Pausar</span>
+        </button>
+        <button id="reset" class="btn" disabled>Reiniciar</button>
+      </div>
+      <p class="hint" id="shortcuts">
+        Atajos: <kbd>Espacio</kbd> Iniciar/Pausar, <kbd>R</kbd> Reiniciar
+      </p>
+    </section>
+  </main>
+
+  <footer class="app-footer" role="contentinfo">
+    <small>Preciso y accesible.</small>
+  </footer>
+
+  <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
