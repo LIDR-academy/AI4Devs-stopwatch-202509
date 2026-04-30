@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
+  <meta name="description" content="Stopwatch and countdown timer built for AI4Devs." />
+  <title>Stopwatch JMB</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app" aria-labelledby="app-title">
+    <h1 id="app-title" class="sr-only">Stopwatch and countdown</h1>
+
+    <section class="panel" aria-label="Timer controls">
+      <div class="mode-switch" role="tablist" aria-label="Timer mode">
+        <button id="stopwatchMode" class="mode-button active" type="button" role="tab" aria-selected="true">Stopwatch</button>
+        <button id="countdownMode" class="mode-button" type="button" role="tab" aria-selected="false">Countdown</button>
+      </div>
+
+      <div class="display" aria-live="polite" aria-atomic="true">
+        <span id="mainTime" class="main-time">00:00:00</span>
+        <span id="milliseconds" class="milliseconds">000</span>
+      </div>
+
+      <form id="countdownForm" class="countdown-form hidden" aria-label="Countdown duration">
+        <label>
+          Hours
+          <input id="hoursInput" type="number" min="0" max="99" step="1" value="0" inputmode="numeric" />
+        </label>
+        <label>
+          Minutes
+          <input id="minutesInput" type="number" min="0" max="59" step="1" value="1" inputmode="numeric" />
+        </label>
+        <label>
+          Seconds
+          <input id="secondsInput" type="number" min="0" max="59" step="1" value="0" inputmode="numeric" />
+        </label>
+      </form>
+
+      <p id="status" class="status" aria-live="polite">Ready.</p>
+
+      <div class="actions">
+        <button id="startButton" class="action-button start" type="button">Start</button>
+        <button id="clearButton" class="action-button clear" type="button">Clear</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
